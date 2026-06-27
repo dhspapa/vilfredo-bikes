@@ -1,0 +1,12 @@
+{% load i18n %}
+{% if route.image %}
+  <img
+    src="{{ route.image.url }}"
+    alt="{{ route.display_title }}"
+    class="route-card-photo w-100 object-fit-cover"
+  >
+{% else %}
+  <div class="route-card-photo route-card-photo-fallback route-card-photo-{{ route.difficulty }} d-flex align-items-end p-3">
+    <span class="badge text-bg-dark bg-opacity-75">{{ route.get_difficulty_display }}</span>
+  </div>
+{% endif %}

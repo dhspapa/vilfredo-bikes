@@ -182,6 +182,7 @@ class RouteAdmin(admin.ModelAdmin):
             "Route details",
             {
                 "fields": (
+                    "image",
                     "distance",
                     "distance_el",
                     "duration",
@@ -199,6 +200,12 @@ class RouteAdmin(admin.ModelAdmin):
                     "description_el",
                     "points_of_interest",
                     "points_of_interest_el",
+                    "coffee_stop",
+                    "coffee_stop_el",
+                    "restaurant",
+                    "restaurant_el",
+                    "beach_info",
+                    "beach_info_el",
                 )
             },
         ),

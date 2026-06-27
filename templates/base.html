@@ -12,16 +12,12 @@
     .bike-card { transition: transform 0.15s ease; }
     .bike-card:hover { transform: translateY(-2px); }
     .bike-photo,
-    .bike-photo-placeholder {
+    .fleet-feature-photo {
       aspect-ratio: 4 / 3;
       background-color: #e9ecef;
     }
-    .bike-photo-placeholder {
-      color: #6c757d;
-      min-height: 10rem;
-    }
     .bike-photo-detail {
-      max-height: 16rem;
+      max-height: 18rem;
     }
     .form-check-input,
     .terms-checkbox {
@@ -40,11 +36,65 @@
       border-color: #0d6efd;
       box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
     }
-    .route-card .route-meta {
-      font-size: 0.9rem;
-    }
     .route-poi-list li + li {
       margin-top: 0.25rem;
+    }
+    .fleet-feature {
+      background: #fff;
+    }
+    .fleet-feature-photo {
+      min-height: 14rem;
+    }
+    @media (min-width: 992px) {
+      .fleet-feature-photo { min-height: 18rem; }
+    }
+    .fleet-feature-copy {
+      background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+    }
+    .routes-hero {
+      background: linear-gradient(135deg, #0d6efd 0%, #084298 100%);
+    }
+    .routes-hero-lead,
+    .routes-hero-kicker {
+      opacity: 0.92;
+    }
+    .routes-stat-pill {
+      background: rgba(255, 255, 255, 0.16);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+    .route-guide-card {
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+    .route-guide-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0.75rem 1.5rem rgba(15, 23, 42, 0.12) !important;
+    }
+    .route-card-photo {
+      aspect-ratio: 16 / 9;
+      min-height: 11rem;
+    }
+    .route-card-photo-fallback {
+      background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+    }
+    .route-card-photo-easy {
+      background: linear-gradient(135deg, #55efc4 0%, #00b894 100%);
+    }
+    .route-card-photo-moderate {
+      background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+    }
+    .route-card-photo-challenging {
+      background: linear-gradient(135deg, #fab1a0 0%, #e17055 100%);
+    }
+    .route-difficulty-badge,
+    .route-meta-chips .badge {
+      font-weight: 600;
+    }
+    .route-extra-label {
+      display: block;
+      font-weight: 600;
+      color: #495057;
+      margin-bottom: 0.15rem;
     }
     footer { font-size: 0.9rem; color: #6c757d; }
     .lang-switch .btn { min-width: 2.75rem; padding: 0.2rem 0.5rem; font-size: 0.85rem; }

@@ -1,18 +1,37 @@
 {% extends "base.html" %}
-{% load i18n bike_extras %}
+{% load i18n bike_extras static %}
 
 {% block title %}{% trans "Rent a bike during your stay" %} · {% trans "Vilfredo Bikes" %}{% endblock %}
 
 {% block content %}
-<div class="text-center mb-4">
-  <h1 class="h2 mb-2">{% trans "Rent a bike during your stay" %}</h1>
-  <p class="text-muted mb-2">
-    {% trans "Self-service bike rental for guests staying at Office Home 2 and Office Home 3." %}
-  </p>
-  <p class="text-muted small">
-    {% trans "This is not a guided tour or organized experience — simply rent a bike for your stay." %}
-  </p>
-</div>
+<section class="fleet-feature mb-4 overflow-hidden rounded-3 shadow-sm">
+  <div class="row g-0 align-items-stretch">
+    <div class="col-12 col-lg-7">
+      <img
+        src="{% static 'bikes/fleet-featured.png' %}"
+        alt="{% trans 'Vilfredo Bikes fleet' %}"
+        class="fleet-feature-photo w-100 h-100 object-fit-cover"
+        width="1200"
+        height="800"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      >
+    </div>
+    <div class="col-12 col-lg-5">
+      <div class="fleet-feature-copy h-100 d-flex flex-column justify-content-center p-4 p-md-5">
+        <p class="text-uppercase small fw-semibold mb-2 text-primary">{% trans "Office Home guests" %}</p>
+        <h1 class="h2 mb-2">{% trans "Rent a bike during your stay" %}</h1>
+        <p class="text-muted mb-2">
+          {% trans "Self-service bike rental for guests staying at Office Home 2 and Office Home 3." %}
+        </p>
+        <p class="text-muted small mb-0">
+          {% trans "This is not a guided tour or organized experience — simply rent a bike for your stay." %}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <div class="row g-4 mb-4">
   <div class="col-12 col-lg-6">

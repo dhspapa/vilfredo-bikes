@@ -715,6 +715,13 @@ class PropertyLandingTests(TestCase):
 
 class BikePhotoTests(TestCase):
     def setUp(self):
+        Bike.objects.create(
+            name="Electric Bike",
+            name_el="Ηλεκτρικό ποδήλατο",
+            bike_type=Bike.BikeType.ELECTRIC,
+            daily_price=Decimal("20.00"),
+            active=True,
+        )
         self.bike = Bike.objects.create(
             name="City Bike",
             name_el="Ποδήλατο πόλης",
@@ -723,15 +730,33 @@ class BikePhotoTests(TestCase):
             active=True,
         )
 
-    def test_homepage_shows_photo_placeholder_without_image(self):
+    def test_homepage_shows_bike_photos(self):
         response = self.client.get(reverse("home"))
-        self.assertContains(response, "Photo coming soon")
-        self.assertContains(response, "bike-photo-placeholder")
+        self.assertContains(response, "/static/bikes/city-bike.png")
+        self.assertContains(response, "/static/bikes/electric-bike.png")
+        self.assertNotContains(response, "Photo coming soon")
 
-    def test_bike_detail_shows_photo_placeholder_without_image(self):
+    def test_bike_detail_shows_city_bike_photo(self):
         response = self.client.get(reverse("bike_detail", args=[self.bike.pk]))
-        self.assertContains(response, "Photo coming soon")
+        self.assertContains(response, "/static/bikes/city-bike.png")
         self.assertContains(response, "terms-checkbox")
+        self.assertNotContains(response, "Photo coming soon")
+
+    def test_homepage_shows_fleet_featured_photo(self):
+        response = self.client.get(reverse("home"))
+        self.assertContains(response, "/static/bikes/fleet-featured.png")
+
+    def test_homepage_shows_uploaded_bike_image_when_set(self):
+        from pathlib import Path
+
+        from django.core.files import File
+
+        image_path = Path(__file__).resolve().parent / "seed_images" / "city-bike.png"
+        with image_path.open("rb") as handle:
+            self.bike.image.save("city-bike.png", File(handle), save=True)
+        response = self.client.get(reverse("home"))
+        self.assertContains(response, "/media/bikes/")
+        self.assertNotContains(response, "Photo coming soon")
 
 
 class RouteCardTests(TestCase):
@@ -748,6 +773,12 @@ class RouteCardTests(TestCase):
             description_el="Παραλιακή διαδρομή στην Καλαμαριά.",
             points_of_interest="Kalamaria marina, Nea Krini",
             points_of_interest_el="Μαρίνα Καλαμαριάς, Νέα Κρήνη",
+            coffee_stop="Black Drop Kalamaria",
+            coffee_stop_el="Black Drop Καλαμαριά",
+            restaurant="Psaradiko tou Tsaliagiou",
+            restaurant_el="Ψαραδικό του Τσαλιαγκίου",
+            beach_info="Small coves near Nea Krini",
+            beach_info_el="Μικρούς όρμους κοντά στη Νέα Κρήνη",
             google_maps_url="https://maps.google.com/?q=Kalamaria",
             active=True,
         )
@@ -758,7 +789,20 @@ class RouteCardTests(TestCase):
         self.assertContains(response, "8 km")
         self.assertContains(response, "1.5 hours")
         self.assertContains(response, "Kalamaria marina")
-        self.assertContains(response, "Open in Google Maps")
+        self.assertContains(response, "Black Drop Kalamaria")
+        self.assertContains(response, "Psaradiko tou Tsaliagiou")
+        self.assertContains(response, "Small coves near Nea Krini")
+        self.assertContains(response, "Google Maps")
+        self.assertContains(response, "Start route")
+        self.assertContains(response, "route-guide-card")
+
+    def test_routes_page_greek_route_card(self):
+        with translation.override("el"):
+            response = self.client.get(reverse("routes"))
+            self.assertContains(response, "Παραλιακή διαδρομή Καλαμαριάς")
+            self.assertContains(response, "Black Drop Καλαμαριά")
+            self.assertContains(response, "Ξεκινήστε τη διαδρομή")
+            self.assertNotContains(response, "Kalamaria Coastal Ride")
 
 
 

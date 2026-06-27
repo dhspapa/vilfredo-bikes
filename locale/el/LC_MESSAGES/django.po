@@ -339,3 +339,39 @@ msgstr "Αξιοθέατα"
 
 msgid "Optional self-guided rides near Thessaloniki and Kalamaria — not an organized tour or guided experience."
 msgstr "Προαιρετικές αυτοκαθοδηγούμενες διαδρομές κοντά στη Θεσσαλονίκη και την Καλαμαριά — όχι οργανωμένη ξενάγηση ή καθοδηγούμενη εμπειρία."
+
+msgid "Route ideas around Thessaloniki & Kalamaria"
+msgstr "Ιδέες διαδρομών στη Θεσσαλονίκη & Καλαμαριά"
+
+msgid "Self-guided rides"
+msgstr "Αυτοκαθοδηγούμενες διαδρομές"
+
+msgid "routes"
+msgstr "διαδρομές"
+
+msgid "Coffee & food tips"
+msgstr "Προτάσεις για καφέ & φαγητό"
+
+msgid "Google Maps ready"
+msgstr "Έτοιμο για Google Maps"
+
+msgid "Google Maps"
+msgstr "Google Maps"
+
+msgid "Start route"
+msgstr "Ξεκινήστε τη διαδρομή"
+
+msgid "Coffee stop"
+msgstr "Στάση για καφέ"
+
+msgid "Restaurant"
+msgstr "Εστιατόριο"
+
+msgid "Beach"
+msgstr "Παραλία"
+
+msgid "Office Home guests"
+msgstr "Επισκέπτες Office Home"
+
+msgid "Vilfredo Bikes fleet"
+msgstr "Στόλος Vilfredo Bikes"

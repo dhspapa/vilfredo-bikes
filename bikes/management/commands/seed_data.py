@@ -1,9 +1,12 @@
 from decimal import Decimal
+from pathlib import Path
 
+from django.core.files import File
 from django.core.management.base import BaseCommand
 
 from bikes.models import Bike, Route
 
+SEED_IMAGES_DIR = Path(__file__).resolve().parent.parent.parent / "seed_images"
 
 BIKES = [
     {
@@ -11,12 +14,14 @@ BIKES = [
         "name_el": "Ηλεκτρικό ποδήλατο",
         "bike_type": Bike.BikeType.ELECTRIC,
         "daily_price": Decimal("20.00"),
+        "image_file": "electric-bike.png",
     },
     {
         "name": "City Bike",
         "name_el": "Ποδήλατο πόλης",
         "bike_type": Bike.BikeType.CITY,
         "daily_price": Decimal("10.00"),
+        "image_file": "city-bike.png",
     },
 ]
 
@@ -33,6 +38,12 @@ ROUTES = [
         "description_el": "Ήρεμη βόλτα κατά μήκος του παραλιακού με θέα στη θάλασσα.",
         "points_of_interest": "White Tower, Umbrellas sculpture, Aristotelous Square",
         "points_of_interest_el": "Λευκός Πύργος, Ομπρέλες, πλατεία Αριστοτέλους",
+        "coffee_stop": "Estrella Café, Nikis Avenue",
+        "coffee_stop_el": "Estrella Café, Λεωφ. Νίκης",
+        "restaurant": "Kitchen Bar for waterfront dining",
+        "restaurant_el": "Kitchen Bar για φαγητό δίπλα στη θάλασσα",
+        "beach_info": "No swim stop — city promenade only",
+        "beach_info_el": "Χωρίς κολύμβηση — αστικό παραλιακό μονοπάτι",
         "google_maps_url": "https://maps.google.com/?q=Thessaloniki+Waterfront",
     },
     {
@@ -47,6 +58,12 @@ ROUTES = [
         "description_el": "Κυκλική διαδρομή στα κεντρικά αξιοθέατα, από τον Λευκό Πύργο μέχρι την πλατεία Αριστοτέλους.",
         "points_of_interest": "White Tower, Nikis Avenue, Aristotelous Square, Ladadika",
         "points_of_interest_el": "Λευκός Πύργος, Λεωφ. Νίκης, πλατεία Αριστοτέλους, Λαδάδικα",
+        "coffee_stop": "Municipality Coffee, Aristotelous Square",
+        "coffee_stop_el": "Municipality Coffee, πλατεία Αριστοτέλους",
+        "restaurant": "Full tou Meze in Ladadika",
+        "restaurant_el": "Full tou Meze στα Λαδάδικα",
+        "beach_info": "",
+        "beach_info_el": "",
         "google_maps_url": "https://maps.google.com/?q=White+Tower+Thessaloniki",
     },
     {
@@ -61,6 +78,12 @@ ROUTES = [
         "description_el": "Παραλιακή διαδρομή στην Καλαμαριά με καφέ και ήσυχους δρόμους.",
         "points_of_interest": "Kalamaria marina, Nea Krini, Mikro Emvolo",
         "points_of_interest_el": "Μαρίνα Καλαμαριάς, Νέα Κρήνη, Μικρό Έμβολο",
+        "coffee_stop": "Black Drop Kalamaria",
+        "coffee_stop_el": "Black Drop Καλαμαριά",
+        "restaurant": "Psaradiko tou Tsaliagiou",
+        "restaurant_el": "Ψαραδικό του Τσαλιαγκίου",
+        "beach_info": "Small coves near Nea Krini — bring a towel",
+        "beach_info_el": "Μικρούς όρμους κοντά στη Νέα Κρήνη — πάρτε πετσέτα",
         "google_maps_url": "https://maps.google.com/?q=Kalamaria+Thessaloniki",
     },
     {
@@ -75,6 +98,12 @@ ROUTES = [
         "description_el": "Σύντομη παραλιακή βόλτα, ιδανική για πρωινό καφέ κοντά στην Καλαμαριά.",
         "points_of_interest": "Nea Krini beach, coastal cafés, Aretsou marina",
         "points_of_interest_el": "Παραλία Νέας Κρήνης, παραλιακά καφέ, μαρίνα Αρέτσου",
+        "coffee_stop": "Boog Coffee & Snack Bar",
+        "coffee_stop_el": "Boog Coffee & Snack Bar",
+        "restaurant": "",
+        "restaurant_el": "",
+        "beach_info": "Organised beach at Nea Krini — calm morning swim",
+        "beach_info_el": "Οργανωμένη παραλία στη Νέα Κρήνη — ήρεμο πρωινό μπάνιο",
         "google_maps_url": "https://maps.google.com/?q=Nea+Krini+Thessaloniki",
     },
     {
@@ -89,6 +118,12 @@ ROUTES = [
         "description_el": "Επίπεδη διαδρομή γύρω από την Αρέτσου με θέα στα σκάφη και τον Θερμαϊκό.",
         "points_of_interest": "Aretsou marina, Mikro Emvolo, Kalamaria waterfront",
         "points_of_interest_el": "Μαρίνα Αρέτσου, Μικρό Έμβολο, παραλία Καλαμαριάς",
+        "coffee_stop": "Marina Café Aretsou",
+        "coffee_stop_el": "Marina Café Αρέτσου",
+        "restaurant": "Ouzou Melathron for seafood",
+        "restaurant_el": "Ουζού Μέλαθρον για θαλασσινά",
+        "beach_info": "Aretsou beach nearby — popular in summer",
+        "beach_info_el": "Παραλία Αρέτσου κοντά — δημοφιλής το καλοκαίρι",
         "google_maps_url": "https://maps.google.com/?q=Aretsou+Marina+Thessaloniki",
     },
     {
@@ -103,6 +138,12 @@ ROUTES = [
         "description_el": "Γραφική διαδρομή στο Μικρό Έμβολο με ανοιχτή θέα στη θάλασα νότια της Καλαμαριάς.",
         "points_of_interest": "Mikro Emvolo lighthouse, coastal path, fish taverns",
         "points_of_interest_el": "Φάρος Μικρού Εμβόλου, παραλιακό μονοπάτι, ψαροταβέρνες",
+        "coffee_stop": "Coastal kiosk near the lighthouse",
+        "coffee_stop_el": "Παραλιακό kiosk κοντά στον φάρο",
+        "restaurant": "Fish taverns at Mikro Emvolo",
+        "restaurant_el": "Ψαροταβέρνες στο Μικρό Έμβολο",
+        "beach_info": "Rocky coves and clear water — best with calm weather",
+        "beach_info_el": "Βραχώδεις όρμοι και καθαρά νερά — καλύτερα με ήρεμο καιρό",
         "google_maps_url": "https://maps.google.com/?q=Mikro+Emvolo+Thessaloniki",
     },
     {
@@ -117,6 +158,12 @@ ROUTES = [
         "description_el": "Πράσινη διαδρομή σε ήσυχους δρόμους μέχρι το πάρκο Καρέτσου και επιστροφή.",
         "points_of_interest": "Karetsou Park, Kalamaria town hall, local cafés",
         "points_of_interest_el": "Πάρκο Καρέτσου, δημαρχείο Καλαμαριάς, τοπικά καφέ",
+        "coffee_stop": "Local bakery café on Plastira Street",
+        "coffee_stop_el": "Τοπικό αρτοποιείο-καφέ στην οδό Πλαστήρα",
+        "restaurant": "",
+        "restaurant_el": "",
+        "beach_info": "",
+        "beach_info_el": "",
         "google_maps_url": "https://maps.google.com/?q=Karetsou+Park+Kalamaria",
     },
     {
@@ -131,6 +178,12 @@ ROUTES = [
         "description_el": "Εύκολη διαδρομή πόλης από την περιοχή του επιβατικού λιμένα μέχρι τα Λαδάδικα.",
         "points_of_interest": "Passenger port, Aristotelous Square, Ladadika",
         "points_of_interest_el": "Επιβατικός λιμένας, πλατεία Αριστοτέλους, Λαδάδικα",
+        "coffee_stop": "Blue Cup at the port",
+        "coffee_stop_el": "Blue Cup στο λιμάνι",
+        "restaurant": "Ta Chalkina in Ladadika",
+        "restaurant_el": "Τα Χαλκίνα στα Λαδάδικα",
+        "beach_info": "",
+        "beach_info_el": "",
         "google_maps_url": "https://maps.google.com/?q=Thessaloniki+Port",
     },
     {
@@ -145,6 +198,12 @@ ROUTES = [
         "description_el": "Λοφώδης διαδρομή ανατολικά του κέντρου με ήσυχους οικιστικούς δρόμους.",
         "points_of_interest": "Ano Toumba, Kaftanzoglou Avenue, local parks",
         "points_of_interest_el": "Άνω Τούμπα, λεωφ. Καυταντζόγλου, τοπικά πάρκα",
+        "coffee_stop": "Neighbourhood café on Kaftanzoglou",
+        "coffee_stop_el": "Γειτονικό καφέ στην Καυταντζόγλου",
+        "restaurant": "Taverna in Ano Toumba",
+        "restaurant_el": "Ταβέρνα στην Άνω Τούμπα",
+        "beach_info": "",
+        "beach_info_el": "",
         "google_maps_url": "https://maps.google.com/?q=Ano+Toumba+Thessaloniki",
     },
     {
@@ -159,6 +218,12 @@ ROUTES = [
         "description_el": "Πολιτιστική διαδρομή που συνδέει ρωμαϊκά μνημεία και το παραλιακό Μέγαρο Μουσικής.",
         "points_of_interest": "Rotunda, Galerius Arch, Thessaloniki Concert Hall",
         "points_of_interest_el": "Ροτόντα, Αψίδα Γαλερίου, Μέγαρο Μουσικής",
+        "coffee_stop": "Café at the Concert Hall",
+        "coffee_stop_el": "Καφέ στο Μέγαρο Μουσικής",
+        "restaurant": "Mylos complex restaurants",
+        "restaurant_el": "Εστιατόρια στον χώρο του Μύλου",
+        "beach_info": "Waterfront views — no beach access on this route",
+        "beach_info_el": "Θέα στη θάλασσα — χωρίς πρόσβαση σε παραλία",
         "google_maps_url": "https://maps.google.com/?q=Thessaloniki+Concert+Hall",
     },
 ]
@@ -168,11 +233,21 @@ CANONICAL_BIKE_NAMES = {bike["name"] for bike in BIKES}
 CANONICAL_ROUTE_TITLES = {route["title"] for route in ROUTES}
 
 
+def _assign_image(instance, field_name, filename):
+    path = SEED_IMAGES_DIR / filename
+    if not path.exists():
+        return False
+    with path.open("rb") as handle:
+        getattr(instance, field_name).save(filename, File(handle), save=True)
+    return True
+
+
 class Command(BaseCommand):
     help = "Seed initial bikes and suggested routes."
 
     def handle(self, *args, **options):
         for bike_data in BIKES:
+            image_file = bike_data.get("image_file")
             bike, created = Bike.objects.update_or_create(
                 name=bike_data["name"],
                 defaults={
@@ -182,6 +257,8 @@ class Command(BaseCommand):
                     "active": True,
                 },
             )
+            if image_file:
+                _assign_image(bike, "image", image_file)
             action = "Created" if created else "Updated"
             self.stdout.write(f"{action} bike: {bike.name}")
 
@@ -198,17 +275,7 @@ class Command(BaseCommand):
             route, created = Route.objects.update_or_create(
                 title=route_data["title"],
                 defaults={
-                    "title_el": route_data["title_el"],
-                    "distance": route_data["distance"],
-                    "distance_el": route_data["distance_el"],
-                    "duration": route_data["duration"],
-                    "duration_el": route_data["duration_el"],
-                    "difficulty": route_data["difficulty"],
-                    "description": route_data["description"],
-                    "description_el": route_data["description_el"],
-                    "points_of_interest": route_data["points_of_interest"],
-                    "points_of_interest_el": route_data["points_of_interest_el"],
-                    "google_maps_url": route_data["google_maps_url"],
+                    **route_data,
                     "active": True,
                 },
             )

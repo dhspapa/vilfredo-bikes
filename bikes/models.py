@@ -149,6 +149,18 @@ class Route(models.Model):
         help_text="Comma-separated highlights (e.g. White Tower, Aristotelous Square).",
     )
     points_of_interest_el = models.TextField(blank=True, default="")
+    coffee_stop = models.CharField(max_length=200, blank=True, default="")
+    coffee_stop_el = models.CharField(max_length=200, blank=True, default="")
+    restaurant = models.CharField(max_length=200, blank=True, default="")
+    restaurant_el = models.CharField(max_length=200, blank=True, default="")
+    beach_info = models.CharField(max_length=255, blank=True, default="")
+    beach_info_el = models.CharField(max_length=255, blank=True, default="")
+    image = models.ImageField(
+        upload_to="routes/",
+        blank=True,
+        null=True,
+        help_text="Optional cover photo for the route card.",
+    )
     google_maps_url = models.URLField(blank=True)
     active = models.BooleanField(default=True)
 
@@ -190,3 +202,30 @@ class Route(models.Model):
         if get_language() == "el" and self.description_el:
             return self.description_el
         return self.description
+
+    @property
+    def display_coffee_stop(self):
+        if get_language() == "el" and self.coffee_stop_el:
+            return self.coffee_stop_el
+        return self.coffee_stop
+
+    @property
+    def display_restaurant(self):
+        if get_language() == "el" and self.restaurant_el:
+            return self.restaurant_el
+        return self.restaurant
+
+    @property
+    def display_beach_info(self):
+        if get_language() == "el" and self.beach_info_el:
+            return self.beach_info_el
+        return self.beach_info
+
+    @property
+    def maps_directions_url(self):
+        if not self.google_maps_url:
+            return ""
+        if "q=" in self.google_maps_url:
+            query = self.google_maps_url.split("q=", 1)[1]
+            return f"https://www.google.com/maps/dir/?api=1&destination={query}"
+        return self.google_maps_url
