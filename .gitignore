@@ -11,3 +11,4 @@ staticfiles/
 _pa_deploy_backup/
 *.log
 runserver_*.txt
+.tools/
