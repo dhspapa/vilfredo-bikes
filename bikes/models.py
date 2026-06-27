@@ -25,6 +25,12 @@ class Bike(models.Model):
     name_el = models.CharField(max_length=100, blank=True, default="")
     bike_type = models.CharField(max_length=20, choices=BikeType.choices)
     daily_price = models.DecimalField(max_digits=8, decimal_places=2)
+    image = models.ImageField(
+        upload_to="bikes/",
+        blank=True,
+        null=True,
+        help_text="Optional photo shown on the homepage and booking page.",
+    )
     active = models.BooleanField(default=True)
 
     class Meta:
@@ -128,11 +134,21 @@ class Route(models.Model):
 
     title = models.CharField(max_length=200)
     title_el = models.CharField(max_length=200, blank=True, default="")
+    distance = models.CharField(max_length=50, blank=True, default="")
+    distance_el = models.CharField(max_length=50, blank=True, default="")
     duration = models.CharField(max_length=50)
     duration_el = models.CharField(max_length=50, blank=True, default="")
     difficulty = models.CharField(max_length=20, choices=Difficulty.choices)
-    description = models.TextField()
+    description = models.TextField(
+        help_text="Short route summary shown on the routes page.",
+    )
     description_el = models.TextField(blank=True, default="")
+    points_of_interest = models.TextField(
+        blank=True,
+        default="",
+        help_text="Comma-separated highlights (e.g. White Tower, Aristotelous Square).",
+    )
+    points_of_interest_el = models.TextField(blank=True, default="")
     google_maps_url = models.URLField(blank=True)
     active = models.BooleanField(default=True)
 
@@ -149,10 +165,25 @@ class Route(models.Model):
         return self.title
 
     @property
+    def display_distance(self):
+        if get_language() == "el" and self.distance_el:
+            return self.distance_el
+        return self.distance
+
+    @property
     def display_duration(self):
         if get_language() == "el" and self.duration_el:
             return self.duration_el
         return self.duration
+
+    @property
+    def display_points_of_interest(self):
+        raw = (
+            self.points_of_interest_el
+            if get_language() == "el" and self.points_of_interest_el
+            else self.points_of_interest
+        )
+        return [item.strip() for item in raw.split(",") if item.strip()]
 
     @property
     def display_description(self):

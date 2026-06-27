@@ -8,6 +8,7 @@ venv/
 __pycache__/
 *.pyc
 staticfiles/
+media/
 _pa_deploy_backup/
 *.log
 runserver_*.txt

@@ -1,39 +1,60 @@
-{% extends "base.html" %}
-{% load i18n %}
-
-{% block title %}{% trans "Route ideas" %} · {% trans "Vilfredo Bikes" %}{% endblock %}
-
-{% block content %}
-<div class="mb-4">
-  <h1 class="h2 mb-2">{% trans "Route ideas" %}</h1>
-  <p class="text-muted">
-    {% trans "Optional self-guided rides near Thessaloniki — not an organized tour or guided experience." %}
-  </p>
-</div>
-
-<div class="row g-3">
-  {% for route in routes %}
-    <div class="col-12 col-md-6 col-lg-4">
-      <div class="card h-100 shadow-sm">
-        <div class="card-body d-flex flex-column">
-          <h2 class="h5 card-title">{{ route.display_title }}</h2>
-          <p class="mb-1"><span class="badge text-bg-secondary">{{ route.get_difficulty_display }}</span></p>
-          <p class="text-muted small mb-2">{{ route.display_duration }}</p>
-          <p class="card-text">{{ route.display_description }}</p>
-          {% if route.google_maps_url %}
-            <a href="{{ route.google_maps_url }}" class="btn btn-outline-primary mt-auto" target="_blank" rel="noopener">
-              {% trans "Open in Google Maps" %}
-            </a>
-          {% else %}
-            <span class="text-muted small mt-auto">{% trans "Google Maps link coming soon" %}</span>
-          {% endif %}
-        </div>
-      </div>
-    </div>
-  {% empty %}
-    <div class="col-12">
-      <div class="alert alert-info">{% trans "No routes published yet." %}</div>
-    </div>
-  {% endfor %}
-</div>
-{% endblock %}
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Route ideas" %} · {% trans "Vilfredo Bikes" %}{% endblock %}
+
+{% block content %}
+<div class="mb-4">
+  <h1 class="h2 mb-2">{% trans "Route ideas" %}</h1>
+  <p class="text-muted">
+    {% trans "Optional self-guided rides near Thessaloniki and Kalamaria — not an organized tour or guided experience." %}
+  </p>
+</div>
+
+<div class="row g-3">
+  {% for route in routes %}
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="card route-card h-100 shadow-sm">
+        <div class="card-body d-flex flex-column">
+          <div class="d-flex justify-content-between align-items-start gap-2 mb-2">
+            <h2 class="h5 card-title mb-0">{{ route.display_title }}</h2>
+            <span class="badge text-bg-secondary">{{ route.get_difficulty_display }}</span>
+          </div>
+
+          <div class="route-meta text-muted mb-3">
+            {% if route.display_distance %}
+              <div><strong>{% trans "Distance" %}:</strong> {{ route.display_distance }}</div>
+            {% endif %}
+            <div><strong>{% trans "Duration" %}:</strong> {{ route.display_duration }}</div>
+          </div>
+
+          <p class="card-text">{{ route.display_description }}</p>
+
+          {% if route.display_points_of_interest %}
+            <div class="mb-3">
+              <strong class="small d-block mb-1">{% trans "Points of interest" %}</strong>
+              <ul class="small route-poi-list mb-0 ps-3">
+                {% for point in route.display_points_of_interest %}
+                  <li>{{ point }}</li>
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+
+          {% if route.google_maps_url %}
+            <a href="{{ route.google_maps_url }}" class="btn btn-outline-primary mt-auto" target="_blank" rel="noopener">
+              {% trans "Open in Google Maps" %}
+            </a>
+          {% else %}
+            <span class="text-muted small mt-auto">{% trans "Google Maps link coming soon" %}</span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <div class="col-12">
+      <div class="alert alert-info">{% trans "No routes published yet." %}</div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

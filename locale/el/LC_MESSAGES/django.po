@@ -324,3 +324,18 @@ msgstr "Αυτό το πεδίο είναι υποχρεωτικό."
 
 msgid "Enter a valid email address."
 msgstr "Εισαγάγετε έγκυρη διεύθυνση email."
+
+msgid "Photo coming soon"
+msgstr "Φωτογραφία σύντομα"
+
+msgid "Distance"
+msgstr "Απόσταση"
+
+msgid "Duration"
+msgstr "Διάρκεια"
+
+msgid "Points of interest"
+msgstr "Αξιοθέατα"
+
+msgid "Optional self-guided rides near Thessaloniki and Kalamaria — not an organized tour or guided experience."
+msgstr "Προαιρετικές αυτοκαθοδηγούμενες διαδρομές κοντά στη Θεσσαλονίκη και την Καλαμαριά — όχι οργανωμένη ξενάγηση ή καθοδηγούμενη εμπειρία."

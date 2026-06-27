@@ -12,7 +12,9 @@ class ReservationForm(forms.ModelForm):
             "responsible for safe use, delays, damage, loss, theft, traffic violations, "
             "and accidents during the rental period."
         ),
-        widget=forms.CheckboxInput(attrs={"class": "form-check-input"}),
+        widget=forms.CheckboxInput(
+            attrs={"class": "form-check-input terms-checkbox"}
+        ),
         error_messages={"required": _("You must accept the rental terms to continue.")},
     )
 

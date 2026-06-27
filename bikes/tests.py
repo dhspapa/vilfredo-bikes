@@ -298,11 +298,15 @@ class BilingualTests(TestCase):
         Route.objects.create(
             title="Thessaloniki Waterfront",
             title_el="Παραλία Θεσσαλονίκης",
+            distance="6 km",
+            distance_el="6 χλμ.",
             duration="45 min",
             duration_el="45 λεπτά",
             difficulty=Route.Difficulty.EASY,
             description="A relaxed ride along the promenade.",
             description_el="Ήρεμη βόλτα κατά μήκος του παραλιακού.",
+            points_of_interest="White Tower, Aristotelous Square",
+            points_of_interest_el="Λευκός Πύργος, πλατεία Αριστοτέλους",
             active=True,
         )
 
@@ -325,6 +329,8 @@ class BilingualTests(TestCase):
             response = self.client.get(reverse("routes"))
             self.assertContains(response, "Παραλία Θεσσαλονίκης")
             self.assertContains(response, "45 λεπτά")
+            self.assertContains(response, "6 χλμ.")
+            self.assertContains(response, "Λευκός Πύργος")
             self.assertNotContains(response, "Thessaloniki Waterfront")
 
     def test_validation_message_greek(self):
@@ -705,6 +711,54 @@ class PropertyLandingTests(TestCase):
     def test_unknown_property_slug_returns_404(self):
         response = self.client.get("/en/unknown-property/")
         self.assertEqual(response.status_code, 404)
+
+
+class BikePhotoTests(TestCase):
+    def setUp(self):
+        self.bike = Bike.objects.create(
+            name="City Bike",
+            name_el="Ποδήλατο πόλης",
+            bike_type=Bike.BikeType.CITY,
+            daily_price=Decimal("10.00"),
+            active=True,
+        )
+
+    def test_homepage_shows_photo_placeholder_without_image(self):
+        response = self.client.get(reverse("home"))
+        self.assertContains(response, "Photo coming soon")
+        self.assertContains(response, "bike-photo-placeholder")
+
+    def test_bike_detail_shows_photo_placeholder_without_image(self):
+        response = self.client.get(reverse("bike_detail", args=[self.bike.pk]))
+        self.assertContains(response, "Photo coming soon")
+        self.assertContains(response, "terms-checkbox")
+
+
+class RouteCardTests(TestCase):
+    def setUp(self):
+        Route.objects.create(
+            title="Kalamaria Coastal Ride",
+            title_el="Παραλιακή διαδρομή Καλαμαριάς",
+            distance="8 km",
+            distance_el="8 χλμ.",
+            duration="1.5 hours",
+            duration_el="1,5 ώρα",
+            difficulty=Route.Difficulty.MODERATE,
+            description="Coastal ride through Kalamaria.",
+            description_el="Παραλιακή διαδρομή στην Καλαμαριά.",
+            points_of_interest="Kalamaria marina, Nea Krini",
+            points_of_interest_el="Μαρίνα Καλαμαριάς, Νέα Κρήνη",
+            google_maps_url="https://maps.google.com/?q=Kalamaria",
+            active=True,
+        )
+
+    def test_routes_page_shows_route_details(self):
+        response = self.client.get(reverse("routes"))
+        self.assertContains(response, "Kalamaria Coastal Ride")
+        self.assertContains(response, "8 km")
+        self.assertContains(response, "1.5 hours")
+        self.assertContains(response, "Kalamaria marina")
+        self.assertContains(response, "Open in Google Maps")
 
 
 

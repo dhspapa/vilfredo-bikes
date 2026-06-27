@@ -6,9 +6,14 @@ from .models import Bike, Reservation, Route
 
 @admin.register(Bike)
 class BikeAdmin(admin.ModelAdmin):
-    list_display = ("name", "name_el", "bike_type", "daily_price", "active")
+    list_display = ("name", "name_el", "bike_type", "daily_price", "active", "has_image")
     list_filter = ("active", "bike_type")
     search_fields = ("name", "name_el")
+    fields = ("name", "name_el", "bike_type", "daily_price", "image", "active")
+
+    @admin.display(boolean=True, description="Photo")
+    def has_image(self, obj):
+        return bool(obj.image)
 
 
 @admin.action(description="Mark selected reservations as returned")
@@ -145,6 +150,56 @@ class ReservationAdmin(admin.ModelAdmin):
 
 @admin.register(Route)
 class RouteAdmin(admin.ModelAdmin):
-    list_display = ("title", "title_el", "duration", "difficulty", "active")
+    list_display = (
+        "title",
+        "title_el",
+        "distance",
+        "duration",
+        "difficulty",
+        "active",
+    )
     list_filter = ("active", "difficulty")
-    search_fields = ("title", "title_el", "description", "description_el")
+    search_fields = (
+        "title",
+        "title_el",
+        "description",
+        "description_el",
+        "points_of_interest",
+        "points_of_interest_el",
+    )
+    fieldsets = (
+        (
+            None,
+            {
+                "fields": (
+                    "title",
+                    "title_el",
+                    "active",
+                )
+            },
+        ),
+        (
+            "Route details",
+            {
+                "fields": (
+                    "distance",
+                    "distance_el",
+                    "duration",
+                    "duration_el",
+                    "difficulty",
+                    "google_maps_url",
+                )
+            },
+        ),
+        (
+            "Content",
+            {
+                "fields": (
+                    "description",
+                    "description_el",
+                    "points_of_interest",
+                    "points_of_interest_el",
+                )
+            },
+        ),
+    )

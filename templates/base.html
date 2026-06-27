@@ -11,6 +11,41 @@
     .navbar-brand { font-weight: 600; }
     .bike-card { transition: transform 0.15s ease; }
     .bike-card:hover { transform: translateY(-2px); }
+    .bike-photo,
+    .bike-photo-placeholder {
+      aspect-ratio: 4 / 3;
+      background-color: #e9ecef;
+    }
+    .bike-photo-placeholder {
+      color: #6c757d;
+      min-height: 10rem;
+    }
+    .bike-photo-detail {
+      max-height: 16rem;
+    }
+    .form-check-input,
+    .terms-checkbox {
+      border: 2px solid #495057;
+      width: 1.15em;
+      height: 1.15em;
+      margin-top: 0.2em;
+    }
+    .form-check-input:checked,
+    .terms-checkbox:checked {
+      background-color: #0d6efd;
+      border-color: #0d6efd;
+    }
+    .form-check-input:focus,
+    .terms-checkbox:focus {
+      border-color: #0d6efd;
+      box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+    }
+    .route-card .route-meta {
+      font-size: 0.9rem;
+    }
+    .route-poi-list li + li {
+      margin-top: 0.25rem;
+    }
     footer { font-size: 0.9rem; color: #6c757d; }
     .lang-switch .btn { min-width: 2.75rem; padding: 0.2rem 0.5rem; font-size: 0.85rem; }
     .step-number {
