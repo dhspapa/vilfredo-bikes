@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load i18n bike_extras %}
+
+{% block title %}{% trans "Payment cancelled" %} · {% trans "Vilfredo Bikes" %}{% endblock %}
+
+{% block content %}
+<div class="text-center mb-4">
+  <h1 class="h3 mb-3">{% trans "Payment cancelled" %}</h1>
+  <p class="text-muted mb-0">
+    {% trans "Payment was cancelled. Your booking is not confirmed." %}
+  </p>
+</div>
+
+<div class="card shadow-sm mx-auto mb-4" style="max-width: 32rem;">
+  <div class="card-body">
+    <h2 class="h5 mb-3">{% trans "Reservation details" %}</h2>
+    <dl class="row mb-0">
+      <dt class="col-sm-5">{% trans "Booking reference" %}</dt>
+      <dd class="col-sm-7 font-monospace">{{ reservation.booking_reference }}</dd>
+
+      <dt class="col-sm-5">{% trans "Bike" %}</dt>
+      <dd class="col-sm-7">{{ reservation.bike.display_name }}</dd>
+
+      <dt class="col-sm-5">{% trans "Rental" %}</dt>
+      <dd class="col-sm-7">{{ reservation.rental_start }} – {{ reservation.rental_end }}</dd>
+    </dl>
+
+    <h3 class="h6 mt-4 mb-3">{% trans "Payment" %}</h3>
+    {% include "bikes/_payment_breakdown.html" %}
+  </div>
+</div>
+
+<div class="text-center">
+  <a href="{% url 'bike_detail' reservation.bike.pk %}" class="btn btn-primary">{% trans "Try again" %}</a>
+  <a href="{% url 'home' %}" class="btn btn-outline-secondary ms-2">{% trans "Back to home" %}</a>
+</div>
+{% endblock %}

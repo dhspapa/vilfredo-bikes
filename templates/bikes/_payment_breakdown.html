@@ -1,0 +1,14 @@
+{% load i18n bike_extras %}
+<dl class="row mb-0">
+  <dt class="col-sm-5">{% trans "Rental price" %}</dt>
+  <dd class="col-sm-7">{{ reservation.total_price|euro }}</dd>
+
+  <dt class="col-sm-5">{% trans "Security deposit" %}</dt>
+  <dd class="col-sm-7">{{ reservation.deposit_amount|euro }}</dd>
+
+  <dt class="col-sm-5">{% trans "Total charged today" %}</dt>
+  <dd class="col-sm-7 fw-semibold">{{ reservation.total_charged|euro }}</dd>
+</dl>
+<p class="small text-muted mb-0 mt-3">
+  {% trans "The security deposit is refundable after the bike is returned without damage, loss, or theft." %}
+</p>

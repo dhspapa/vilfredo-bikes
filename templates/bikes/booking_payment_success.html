@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load i18n bike_extras %}
+
+{% block title %}
+  {% if payment_status == "paid" %}
+    {% trans "Booking confirmed" %}
+  {% else %}
+    {% trans "Payment processing" %}
+  {% endif %}
+  · {% trans "Vilfredo Bikes" %}
+{% endblock %}
+
+{% block content %}
+<div class="text-center mb-4">
+  {% if payment_status == "paid" %}
+    <div class="display-4 text-success mb-3">✓</div>
+    <h1 class="h3 mb-2">{% trans "Booking confirmed" %}</h1>
+    <p class="text-muted mb-2">{% trans "Your booking is confirmed and payment was received." %}</p>
+    <p class="text-success fw-semibold mb-0">{% trans "Payment completed successfully" %}</p>
+  {% else %}
+    <div class="spinner-border text-primary mb-3" role="status" aria-hidden="true"></div>
+    <h1 class="h3 mb-2">{% trans "Payment processing" %}</h1>
+    <p class="text-muted mb-0">{% trans "We received your payment and are confirming your booking. Refresh this page in a moment." %}</p>
+  {% endif %}
+</div>
+
+<div class="card {% if payment_status == 'paid' %}border-success{% else %}border-warning{% endif %} shadow-sm mx-auto mb-4" style="max-width: 32rem;">
+  <div class="card-body text-center py-4">
+    <div class="text-muted small text-uppercase mb-1">{% trans "Booking reference" %}</div>
+    <div class="fs-3 fw-bold font-monospace">{{ reservation.booking_reference }}</div>
+  </div>
+</div>
+
+<div class="card shadow-sm mx-auto" style="max-width: 32rem;">
+  <div class="card-body">
+    <h2 class="h5 mb-3">{% trans "Reservation details" %}</h2>
+    <dl class="row mb-0">
+      <dt class="col-sm-5">{% trans "Bike" %}</dt>
+      <dd class="col-sm-7">{{ reservation.bike.display_name }}</dd>
+
+      <dt class="col-sm-5">{% trans "Guest" %}</dt>
+      <dd class="col-sm-7">{{ reservation.full_name }}</dd>
+
+      <dt class="col-sm-5">{% trans "Email" %}</dt>
+      <dd class="col-sm-7">{{ reservation.email }}</dd>
+
+      <dt class="col-sm-5">{% trans "Phone" %}</dt>
+      <dd class="col-sm-7">{{ reservation.phone }}</dd>
+
+      <dt class="col-sm-5">{% trans "Property" %}</dt>
+      <dd class="col-sm-7">{{ reservation.get_property_name_display }}</dd>
+
+      <dt class="col-sm-5">{% trans "Stay" %}</dt>
+      <dd class="col-sm-7">{{ reservation.check_in }} – {{ reservation.check_out }}</dd>
+
+      <dt class="col-sm-5">{% trans "Rental" %}</dt>
+      <dd class="col-sm-7">{{ reservation.rental_start }} – {{ reservation.rental_end }}</dd>
+
+      <dt class="col-sm-5">{% trans "Duration" %}</dt>
+      <dd class="col-sm-7">{% blocktrans count counter=total_days %}{{ counter }} day{% plural %}{{ counter }} days{% endblocktrans %}</dd>
+
+    </dl>
+
+    <h3 class="h6 mt-4 mb-3">{% trans "Payment" %}</h3>
+    {% include "bikes/_payment_breakdown.html" %}
+
+    <dl class="row mb-0 mt-4">
+      <dt class="col-sm-5">{% trans "Status" %}</dt>
+      <dd class="col-sm-7">
+        {% if payment_status == "paid" %}
+          <span class="badge text-bg-success">{% trans "Paid" %}</span>
+        {% else %}
+          <span class="badge text-bg-warning">{% trans "Payment processing" %}</span>
+        {% endif %}
+      </dd>
+    </dl>
+  </div>
+</div>
+
+{% if payment_status == "paid" %}
+<div class="card shadow-sm mx-auto mt-4" style="max-width: 32rem;">
+  <div class="card-body">
+    {% include "bikes/_pickup_return_instructions.html" %}
+  </div>
+</div>
+{% endif %}
+
+<div class="text-center mt-4">
+  {% if payment_status == "processing" %}
+    <a href="{{ request.get_full_path }}" class="btn btn-primary">{% trans "Refresh page" %}</a>
+  {% else %}
+    <a href="{% url 'home' %}" class="btn btn-primary">{% trans "New booking" %}</a>
+  {% endif %}
+  <a href="{% url 'routes' %}" class="btn btn-outline-secondary ms-2">{% trans "View routes" %}</a>
+</div>
+{% endblock %}

@@ -1,0 +1,326 @@
+# Greek translations for Vilfredo Bikes.
+msgid ""
+msgstr ""
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "English"
+msgstr "Αγγλικά"
+
+msgid "Greek"
+msgstr "Ελληνικά"
+
+msgid "Vilfredo Bikes"
+msgstr "Vilfredo Bikes"
+
+msgid "Rent a bike"
+msgstr "Ενοικίαση ποδηλάτου"
+
+msgid "Routes"
+msgstr "Διαδρομές"
+
+msgid "Self-service bike rental for guests at Office Home 2 and Office Home 3."
+msgstr "Αυτόνομη ενοικίαση ποδηλάτου για επισκέπτες στα Office Home 2 και Office Home 3."
+
+msgid "Rent a bike during your stay"
+msgstr "Νοικιάστε ποδήλατο κατά τη διάρκεια της διαμονής σας"
+
+msgid "Self-service bike rental for guests staying at Office Home 2 and Office Home 3."
+msgstr "Αυτόνομη ενοικίαση ποδηλάτου για επισκέπτες που διαμένουν στα Office Home 2 και Office Home 3."
+
+msgid "This is not a guided tour or organized experience — simply rent a bike for your stay."
+msgstr "Δεν πρόκειται για ξενάγηση ή οργανωμένη εμπειρία — απλώς νοικιάστε ένα ποδήλατο για τη διαμονή σας."
+
+msgid "How it works"
+msgstr "Πώς λειτουργεί"
+
+msgid "Choose your bike"
+msgstr "Επιλέξτε το ποδήλατό σας"
+
+msgid "Select rental dates within your stay"
+msgstr "Επιλέξτε ημερομηνίες ενοικίασης εντός της διαμονής σας"
+
+msgid "Pay securely online by card"
+msgstr "Πληρώστε με ασφάλεια online με κάρτα"
+
+msgid "Pick up the bike from your accommodation"
+msgstr "Παραλάβετε το ποδήλατο από το κατάλυμά σας"
+
+msgid "Return it before the end of the rental period"
+msgstr "Επιστρέψτε το πριν τη λήξη της περιόδου ενοικίασης"
+
+msgid "Responsibility notice"
+msgstr "Ειδοποίηση ευθύνης"
+
+msgid "The bike rental is self-service. The guest is responsible for safe use, delays, damage, loss, theft, traffic violations, and accidents during the rental period."
+msgstr "Η ενοικίαση ποδηλάτου γίνεται με αυτόνομη διαδικασία. Ο επισκέπτης είναι αποκλειστικά υπεύθυνος για την ασφαλή χρήση, καθυστερήσεις, φθορές, απώλεια, κλοπή, παραβάσεις ΚΟΚ και ατυχήματα κατά τη διάρκεια της ενοικίασης."
+
+msgid "Our bikes"
+msgstr "Τα ποδήλατά μας"
+
+msgid "day"
+msgstr "ημέρα"
+
+msgid "Book now"
+msgstr "Κράτηση"
+
+msgid "No bikes are available right now. Please check back later."
+msgstr "Δεν υπάρχουν διαθέσιμα ποδήλατα αυτή τη στιγμή. Δοκιμάστε ξανά αργότερα."
+
+msgid "Optional route ideas for your ride"
+msgstr "Προαιρετικές ιδέες διαδρομών για τη βόλτα σας"
+
+msgid "Book %(name)s"
+msgstr "Κράτηση %(name)s"
+
+msgid "Back to bikes"
+msgstr "Πίσω στα ποδήλατα"
+
+msgid "Your details & rental dates"
+msgstr "Στοιχεία και ημερομηνίες ενοικίασης"
+
+msgid "For guests staying at Office Home 2 or Office Home 3."
+msgstr "Για επισκέπτες που διαμένουν στο Office Home 2 ή Office Home 3."
+
+msgid "Full name"
+msgstr "Ονοματεπώνυμο"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "Phone"
+msgstr "Τηλέφωνο"
+
+msgid "Booking reference"
+msgstr "Κωδικός κράτησης"
+
+msgid "Your accommodation booking reference."
+msgstr "Ο κωδικός κράτησης του καταλύματος."
+
+msgid "Property"
+msgstr "Κατάλυμα"
+
+msgid "Office Home 2"
+msgstr "Office Home 2"
+
+msgid "Office Home 3"
+msgstr "Office Home 3"
+
+msgid "Check-in date"
+msgstr "Ημερομηνία άφιξης"
+
+msgid "Check-out date"
+msgstr "Ημερομηνία αναχώρησης"
+
+msgid "Rental start date"
+msgstr "Έναρξη ενοικίασης"
+
+msgid "Rental end date"
+msgstr "Λήξη ενοικίασης"
+
+msgid "Payment summary"
+msgstr "Σύνοψη πληρωμής"
+
+msgid "Security deposit"
+msgstr "Εγγύηση"
+
+msgid "The security deposit is refundable after the bike is returned without damage, loss, or theft."
+msgstr "Η εγγύηση επιστρέφεται μετά την επιστροφή του ποδηλάτου χωρίς φθορά, απώλεια ή κλοπή."
+
+msgid "Rental price depends on your dates. Rental and deposit are charged together at checkout."
+msgstr "Η τιμή ενοικίασης εξαρτάται από τις ημερομηνίες σας. Η ενοικίαση και η εγγύηση χρεώνονται μαζί κατά την πληρωμή."
+
+msgid "Payment"
+msgstr "Πληρωμή"
+
+msgid "Rental price"
+msgstr "Τιμή ενοικίασης"
+
+msgid "Total charged today"
+msgstr "Συνολικό ποσό σήμερα"
+
+msgid ""
+"I accept the rental terms and responsibility notice. I confirm that I am "
+"responsible for safe use, delays, damage, loss, theft, traffic violations, "
+"and accidents during the rental period."
+msgstr ""
+"Αποδέχομαι τους όρους ενοικίασης και την ειδοποίηση ευθύνης. Επιβεβαιώνω ότι "
+"είμαι υπεύθυνος/η για την ασφαλή χρήση, καθυστερήσεις, ζημιές, απώλεια, κλοπή, "
+"κυκλοφοριακές παραβάσεις και ατυχήματα κατά τη διάρκεια της ενοικίασης."
+
+msgid "You must accept the rental terms to continue."
+msgstr "Πρέπει να αποδεχτείτε τους όρους ενοικίασης για να συνεχίσετε."
+
+msgid "Continue to payment"
+msgstr "Συνέχεια στην πληρωμή"
+
+msgid "Your booking is confirmed and payment was received."
+msgstr "Η κράτησή σας επιβεβαιώθηκε και η πληρωμή ελήφθη."
+
+msgid "Paid"
+msgstr "Πληρώθηκε"
+
+msgid "Payment completed successfully"
+msgstr "Η πληρωμή ολοκληρώθηκε επιτυχώς"
+
+msgid "New booking"
+msgstr "Νέα κράτηση"
+
+msgid "Payment processing"
+msgstr "Επεξεργασία πληρωμής"
+
+msgid "We received your payment and are confirming your booking. Refresh this page in a moment."
+msgstr "Λάβαμε την πληρωμή σας και επιβεβαιώνουμε την κράτηση. Ανανεώστε τη σελίδα σε λίγο."
+
+msgid "Refresh page"
+msgstr "Ανανέωση σελίδας"
+
+msgid "Your bike rental is confirmed"
+msgstr "Η ενοικίαση ποδηλάτου σας επιβεβαιώθηκε"
+
+msgid "Payment was cancelled. Your booking is not confirmed."
+msgstr "Η πληρωμή ακυρώθηκε. Η κράτησή σας δεν επιβεβαιώθηκε."
+
+msgid "Try again"
+msgstr "Δοκιμάστε ξανά"
+
+msgid "Online payments are not configured yet."
+msgstr "Οι online πληρωμές δεν έχουν ρυθμιστεί ακόμα."
+
+msgid "Payment could not be started. Please try again."
+msgstr "Η πληρωμή δεν μπόρεσε να ξεκινήσει. Δοκιμάστε ξανά."
+
+msgid "Check-out must be on or after check-in."
+msgstr "Η αναχώρηση πρέπει να είναι την ίδια ή μεταγενέστερη ημερομηνία από την άφιξη."
+
+msgid "Rental end must be on or after rental start."
+msgstr "Η λήξη ενοικίασης πρέπει να είναι την ίδια ή μεταγενέστερη ημερομηνία από την έναρξη."
+
+msgid "Rental start must be on or after check-in."
+msgstr "Η έναρξη ενοικίασης πρέπει να είναι την ίδια ή μεταγενέστερη ημερομηνία από την άφιξη."
+
+msgid "Rental end must be on or before check-out."
+msgstr "Η λήξη ενοικίασης πρέπει να είναι την ίδια ή προγενέστερη ημερομηνία από την αναχώρηση."
+
+msgid "Booking confirmed"
+msgstr "Η κράτηση επιβεβαιώθηκε"
+
+msgid "Reservation details"
+msgstr "Στοιχεία κράτησης"
+
+msgid "Bike"
+msgstr "Ποδήλατο"
+
+msgid "Guest"
+msgstr "Επισκέπτης"
+
+msgid "Stay"
+msgstr "Διαμονή"
+
+msgid "Rental"
+msgstr "Ενοικίαση"
+
+msgid "Duration"
+msgstr "Διάρκεια"
+
+msgid "%(counter)s day"
+msgid_plural "%(counter)s days"
+msgstr[0] "%(counter)s ημέρα"
+msgstr[1] "%(counter)s ημέρες"
+
+msgid "Status"
+msgstr "Κατάσταση"
+
+msgid "Back to home"
+msgstr "Αρχική"
+
+msgid "View routes"
+msgstr "Διαδρομές"
+
+msgid "Route ideas"
+msgstr "Ιδέες διαδρομών"
+
+msgid "Optional self-guided rides near Thessaloniki — not an organized tour or guided experience."
+msgstr "Προαιρετικές αυτοδύναμες διαδρομές κοντά στη Θεσσαλονίκη — όχι οργανωμένη ξενάγηση ή καθοδηγούμενη εμπειρία."
+
+msgid "Open in Google Maps"
+msgstr "Άνοιγμα στο Google Maps"
+
+msgid "Google Maps link coming soon"
+msgstr "Σύντομα διαθέσιμος σύνδεσμος Google Maps"
+
+msgid "No routes published yet."
+msgstr "Δεν έχουν δημοσιευτεί διαδρομές ακόμα."
+
+msgid ""
+"Sorry, this bike is not available for the selected rental dates. "
+"Please choose different dates or another bike."
+msgstr ""
+"Λυπούμαστε, αυτό το ποδήλατο δεν είναι διαθέσιμο για τις επιλεγμένες ημερομηνίες. "
+"Επιλέξτε άλλες ημερομηνίες ή άλλο ποδήλατο."
+
+msgid "Electric"
+msgstr "Ηλεκτρικό"
+
+msgid "City"
+msgstr "Πόλης"
+
+msgid "Easy"
+msgstr "Εύκολη"
+
+msgid "Moderate"
+msgstr "Μέτρια"
+
+msgid "Challenging"
+msgstr "Απαιτητική"
+
+msgid "Payment cancelled"
+msgstr "Η πληρωμή ακυρώθηκε"
+
+msgid "Pickup instructions:"
+msgstr "Οδηγίες παραλαβής:"
+
+msgid "The bike is available at your accommodation from the first rental day."
+msgstr "Το ποδήλατο είναι διαθέσιμο στο κατάλυμά σας από την πρώτη ημέρα ενοικίασης."
+
+msgid "You will receive the lock/code details by message or at the property."
+msgstr "Τα στοιχεία κλειδαριάς/κωδικού θα σας δοθούν με μήνυμα ή στο κατάλυμα."
+
+msgid "Please check the bike before use and report any visible damage immediately."
+msgstr "Ελέγξτε το ποδήλατο πριν τη χρήση και αναφέρετε άμεσα οποιαδήποτε εμφανή φθορά."
+
+msgid "Return instructions:"
+msgstr "Οδηγίες επιστροφής:"
+
+msgid "Return the bike to the same pickup location before the end of your rental period."
+msgstr "Επιστρέψτε το ποδήλατο στο ίδιο σημείο παραλαβής πριν τη λήξη της περιόδου ενοικίασης."
+
+msgid "Lock the bike securely."
+msgstr "Κλειδώστε το ποδήλατο σωστά."
+
+msgid "Late return may affect the refundable security deposit."
+msgstr "Η καθυστερημένη επιστροφή μπορεί να επηρεάσει την επιστροφή της εγγύησης."
+
+msgid "Rent a bike during your stay at %(property)s."
+msgstr "Ενοικιάστε ποδήλατο κατά τη διαμονή σας στο %(property)s."
+
+msgid "Choose a bike"
+msgstr "Επιλέξτε ποδήλατο"
+
+msgid "For guests staying at %(property)s."
+msgstr "Για επισκέπτες που διαμένουν στο %(property)s."
+
+msgid "%(bike)s rental"
+msgstr "Ενοικίαση %(bike)s"
+
+msgid "Refundable security deposit"
+msgstr "Επιστρέψιμη εγγύηση"
+
+msgid "This field is required."
+msgstr "Αυτό το πεδίο είναι υποχρεωτικό."
+
+msgid "Enter a valid email address."
+msgstr "Εισαγάγετε έγκυρη διεύθυνση email."

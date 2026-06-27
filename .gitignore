@@ -1,0 +1,13 @@
+.env
+.env.*
+!.env.example
+db.sqlite3
+*.sqlite3
+.venv/
+venv/
+__pycache__/
+*.pyc
+staticfiles/
+_pa_deploy_backup/
+*.log
+runserver_*.txt

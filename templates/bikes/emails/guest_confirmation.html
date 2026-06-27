@@ -1,0 +1,19 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}">
+<body style="font-family: sans-serif; line-height: 1.5; color: #212529;">
+  <h2>{% trans "Your bike rental is confirmed" %}</h2>
+  <p><strong>{% trans "Booking reference" %}:</strong> {{ reservation.booking_reference }}</p>
+  <p><strong>{% trans "Bike" %}:</strong> {{ reservation.bike.display_name }}</p>
+  <p><strong>{% trans "Rental" %}:</strong> {{ reservation.rental_start }} – {{ reservation.rental_end }}</p>
+  <p><strong>{% trans "Rental price" %}:</strong> {{ reservation.formatted_total_price }}</p>
+  <p><strong>{% trans "Security deposit" %}:</strong> {{ reservation.formatted_deposit_amount }}</p>
+  <p><strong>{% trans "Total charged today" %}:</strong> {{ reservation.formatted_total_charged }}</p>
+  <p><em>{% trans "The security deposit is refundable after the bike is returned without damage, loss, or theft." %}</em></p>
+  <p><strong>{% trans "Property" %}:</strong> {{ reservation.get_property_name_display }}</p>
+  {% include "bikes/emails/_pickup_return_instructions.html" %}
+  <hr>
+  <p><strong>{% trans "Responsibility notice" %}</strong></p>
+  <p>{% blocktrans trimmed %}The bike rental is self-service. The guest is responsible for safe use, delays, damage, loss, theft, traffic violations, and accidents during the rental period.{% endblocktrans %}</p>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{% load i18n %}
+{% trans "Pickup instructions:" %}
+{% trans "The bike is available at your accommodation from the first rental day." %}
+{% trans "You will receive the lock/code details by message or at the property." %}
+{% trans "Please check the bike before use and report any visible damage immediately." %}
+
+{% trans "Return instructions:" %}
+{% trans "Return the bike to the same pickup location before the end of your rental period." %}
+{% trans "Lock the bike securely." %}
+{% trans "Late return may affect the refundable security deposit." %}

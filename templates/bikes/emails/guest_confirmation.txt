@@ -1,0 +1,17 @@
+{% load i18n %}
+{% trans "Your bike rental is confirmed" %}
+
+{% trans "Booking reference" %}: {{ reservation.booking_reference }}
+{% trans "Bike" %}: {{ reservation.bike.display_name }}
+{% trans "Rental" %}: {{ reservation.rental_start }} – {{ reservation.rental_end }}
+{% trans "Rental price" %}: {{ reservation.formatted_total_price }}
+{% trans "Security deposit" %}: {{ reservation.formatted_deposit_amount }}
+{% trans "Total charged today" %}: {{ reservation.formatted_total_charged }}
+{% trans "Property" %}: {{ reservation.get_property_name_display }}
+
+{% include "bikes/emails/_pickup_return_instructions.txt" %}
+
+{% trans "Responsibility notice" %}
+{% blocktrans trimmed %}
+The bike rental is self-service. The guest is responsible for safe use, delays, damage, loss, theft, traffic violations, and accidents during the rental period.
+{% endblocktrans %}
