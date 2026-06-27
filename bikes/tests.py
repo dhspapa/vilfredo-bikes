@@ -273,7 +273,59 @@ class StripePaymentTests(TestCase):
             {"id": "cs_test_123", "metadata": {"reservation_id": str(self.reservation.pk)}}
         )
 
-        self.assertIn("Η ενοικίαση ποδηλάτου σας επιβεβαιώθηκε", mail.outbox[0].subject)
+        guest_email = next(
+            message
+            for message in mail.outbox
+            if message.to == [self.reservation.email]
+        )
+        self.assertIn("Η ενοικίαση ποδηλάτου σας επιβεβαιώθηκε", guest_email.subject)
+
+    @override_settings(
+        DEFAULT_FROM_EMAIL="bikes@test.example",
+        ADMIN_NOTIFICATION_EMAIL="owner@test.example",
+        EMAIL_BACKEND="django.core.mail.backends.locmem.EmailBackend",
+    )
+    def test_admin_email_includes_stripe_session_reference(self):
+        from django.core import mail
+
+        from bikes.stripe_utils import mark_reservation_paid_from_session
+
+        mark_reservation_paid_from_session(
+            {"id": "cs_test_123", "metadata": {"reservation_id": str(self.reservation.pk)}}
+        )
+
+        admin_email = next(
+            message
+            for message in mail.outbox
+            if message.to == ["owner@test.example"]
+        )
+        self.assertIn("cs_test_123", admin_email.body)
+        self.assertIn("Booking reference: OH2-12345", admin_email.body)
+        self.assertIn("Jane Guest", admin_email.body)
+
+    @override_settings(
+        DEFAULT_FROM_EMAIL="bikes@test.example",
+        ADMIN_NOTIFICATION_EMAIL="",
+        EMAIL_BACKEND="django.core.mail.backends.locmem.EmailBackend",
+    )
+    def test_admin_notification_logs_when_admin_email_not_set(self):
+        from django.core import mail
+
+        from bikes.stripe_utils import mark_reservation_paid_from_session
+
+        with self.assertLogs("bikes.emails", level="WARNING") as logs:
+            mark_reservation_paid_from_session(
+                {"id": "cs_test_123", "metadata": {"reservation_id": str(self.reservation.pk)}}
+            )
+
+        log_output = "\n".join(logs.output)
+        self.assertIn("Vilfredo Bikes admin booking notification", log_output)
+        self.assertIn("OH2-12345", log_output)
+        self.assertIn("cs_test_123", log_output)
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].to, [self.reservation.email])
+        self.reservation.refresh_from_db()
+        self.assertTrue(self.reservation.confirmation_email_sent)
 
     def test_cancel_page_keeps_reservation_unpaid(self):
         response = self.client.get(
@@ -639,7 +691,11 @@ class PickupReturnInstructionsTests(TestCase):
             {"id": "cs_test_pickup", "metadata": {"reservation_id": str(self.reservation.pk)}}
         )
 
-        guest_email = mail.outbox[0]
+        guest_email = next(
+            message
+            for message in mail.outbox
+            if message.to == [self.reservation.email]
+        )
         self.assertIn("Οδηγίες παραλαβής:", guest_email.body)
         self.assertIn("Οδηγίες επιστροφής:", guest_email.body)
         self.assertNotIn("Pickup instructions:", guest_email.body)

@@ -6,7 +6,8 @@
     class="route-card-photo w-100 object-fit-cover"
   >
 {% else %}
-  <div class="route-card-photo route-card-photo-fallback route-card-photo-{{ route.difficulty }} d-flex align-items-end p-3">
+  <div class="route-card-photo route-card-photo-fallback route-card-photo-{{ route.difficulty }} d-flex align-items-center justify-content-between px-3">
+    <span class="small fw-semibold text-dark text-opacity-75">{% trans "Suggested route" %}</span>
     <span class="badge text-bg-dark bg-opacity-75">{{ route.get_difficulty_display }}</span>
   </div>
 {% endif %}

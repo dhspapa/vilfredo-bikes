@@ -6,17 +6,17 @@
 {% block content %}
 <section class="fleet-feature mb-4 overflow-hidden rounded-3 shadow-sm">
   <div class="row g-0 align-items-stretch">
-    <div class="col-12 col-lg-7">
-      <img
-        src="{% static 'bikes/fleet-featured.png' %}"
-        alt="{% trans 'Vilfredo Bikes fleet' %}"
-        class="fleet-feature-photo w-100 h-100 object-fit-cover"
-        width="1200"
-        height="800"
-        loading="eager"
-        decoding="async"
-        fetchpriority="high"
-      >
+    <div class="col-12 col-lg-7 fleet-feature-media-wrap">
+      <div class="fleet-feature-media">
+        <img
+          src="{% static 'bikes/fleet-featured.png' %}"
+          alt="{% trans 'Vilfredo Bikes fleet' %}"
+          class="fleet-feature-photo"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        >
+      </div>
     </div>
     <div class="col-12 col-lg-5">
       <div class="fleet-feature-copy h-100 d-flex flex-column justify-content-center p-4 p-md-5">

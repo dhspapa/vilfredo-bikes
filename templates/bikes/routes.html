@@ -23,22 +23,22 @@
   </div>
 </section>
 
-<div class="row g-4">
+<div class="row g-3">
   {% for route in routes %}
     <div class="col-12 col-lg-6">
       <article class="card route-guide-card h-100 shadow-sm overflow-hidden border-0">
         <div class="position-relative">
           {% include "bikes/_route_photo.html" with route=route %}
           {% if route.image %}
-            <span class="badge route-difficulty-badge position-absolute top-0 end-0 m-3 text-bg-dark">
+            <span class="badge route-difficulty-badge position-absolute top-0 end-0 m-2 text-bg-dark">
               {{ route.get_difficulty_display }}
             </span>
           {% endif %}
         </div>
         <div class="card-body d-flex flex-column">
-          <h2 class="h5 card-title mb-2">{{ route.display_title }}</h2>
+          <h2 class="h5 card-title mb-1">{{ route.display_title }}</h2>
 
-          <div class="route-meta-chips d-flex flex-wrap gap-2 mb-3">
+          <div class="route-meta-chips d-flex flex-wrap gap-2 mb-2">
             {% if route.display_distance %}
               <span class="badge rounded-pill text-bg-light border">
                 {% trans "Distance" %}: {{ route.display_distance }}
@@ -49,11 +49,11 @@
             </span>
           </div>
 
-          <p class="card-text text-muted">{{ route.display_description }}</p>
+          <p class="card-text text-muted small mb-2">{{ route.display_description }}</p>
 
           {% if route.display_points_of_interest %}
-            <div class="mb-3">
-              <h3 class="h6 mb-2">{% trans "Points of interest" %}</h3>
+            <div class="mb-2">
+              <h3 class="h6 mb-1">{% trans "Points of interest" %}</h3>
               <ul class="small route-poi-list mb-0 ps-3">
                 {% for point in route.display_points_of_interest %}
                   <li>{{ point }}</li>
@@ -62,7 +62,7 @@
             </div>
           {% endif %}
 
-          <div class="route-guide-extras small mb-3">
+          <div class="route-guide-extras small mb-2">
             {% if route.display_coffee_stop %}
               <div class="route-extra-item mb-2">
                 <span class="route-extra-label">☕ {% trans "Coffee stop" %}</span>

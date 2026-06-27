@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <body style="font-family: sans-serif; line-height: 1.5; color: #212529;">
-  <h2>New paid bike reservation</h2>
-  <p><strong>Guest:</strong> {{ reservation.full_name }}</p>
-  <p><strong>Email:</strong> {{ reservation.email }}</p>
-  <p><strong>Phone:</strong> {{ reservation.phone }}</p>
+  <h2>New paid bike booking</h2>
   <p><strong>Booking reference:</strong> {{ reservation.booking_reference }}</p>
-  <p><strong>Property:</strong> {{ reservation.property_name }}</p>
+  <p><strong>Guest name:</strong> {{ reservation.full_name }}</p>
+  <p><strong>Phone:</strong> {{ reservation.phone }}</p>
+  <p><strong>Email:</strong> {{ reservation.email }}</p>
+  <p><strong>Property:</strong> {{ reservation.get_property_name_display }}</p>
   <p><strong>Bike:</strong> {{ reservation.bike.name }}</p>
-  <p><strong>Rental:</strong> {{ reservation.rental_start }} – {{ reservation.rental_end }}</p>
+  <p><strong>Rental dates:</strong> {{ reservation.rental_start }} – {{ reservation.rental_end }}</p>
+  <p><strong>Total paid:</strong> {{ reservation.formatted_total_charged }}</p>
+  <p><strong>Stripe payment reference:</strong>
+    {% if reservation.stripe_session_id %}{{ reservation.stripe_session_id }}{% else %}Not available{% endif %}
+  </p>
+  <hr>
   <p><strong>Rental price:</strong> {{ reservation.formatted_total_price }}</p>
   <p><strong>Security deposit:</strong> {{ reservation.formatted_deposit_amount }}</p>
-  <p><strong>Total charged today:</strong> {{ reservation.formatted_total_charged }}</p>
 </body>
 </html>

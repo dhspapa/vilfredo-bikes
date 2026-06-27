@@ -11,8 +11,7 @@
     .navbar-brand { font-weight: 600; }
     .bike-card { transition: transform 0.15s ease; }
     .bike-card:hover { transform: translateY(-2px); }
-    .bike-photo,
-    .fleet-feature-photo {
+    .bike-photo {
       aspect-ratio: 4 / 3;
       background-color: #e9ecef;
     }
@@ -42,11 +41,33 @@
     .fleet-feature {
       background: #fff;
     }
-    .fleet-feature-photo {
-      min-height: 14rem;
+    .fleet-feature-media-wrap {
+      background: #fff;
+    }
+    .fleet-feature-media {
+      width: 100%;
+      height: 100%;
+      min-height: 11rem;
+      max-height: 14rem;
+      overflow: hidden;
     }
     @media (min-width: 992px) {
-      .fleet-feature-photo { min-height: 18rem; }
+      .fleet-feature-media {
+        min-height: 100%;
+        max-height: none;
+        height: 100%;
+      }
+    }
+    .fleet-feature-photo {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 11rem;
+      object-fit: cover;
+      object-position: center;
+    }
+    @media (min-width: 992px) {
+      .fleet-feature-photo { min-height: 16rem; }
     }
     .fleet-feature-copy {
       background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
@@ -70,9 +91,18 @@
       transform: translateY(-3px);
       box-shadow: 0 0.75rem 1.5rem rgba(15, 23, 42, 0.12) !important;
     }
-    .route-card-photo {
-      aspect-ratio: 16 / 9;
-      min-height: 11rem;
+    .route-guide-card .card-body {
+      padding: 1rem 1.1rem 1.15rem;
+    }
+    .route-guide-card .card-title {
+      font-size: 1.05rem;
+    }
+    .route-card-photo,
+    .route-card-photo-fallback {
+      height: 4.5rem;
+      min-height: 0;
+      max-height: 4.5rem;
+      aspect-ratio: auto;
     }
     .route-card-photo-fallback {
       background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);

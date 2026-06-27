@@ -4,21 +4,25 @@ from django.db import transaction
 from django.template.loader import render_to_string
 from django.utils import timezone, translation
 from django.utils.translation import gettext as _
+import logging
 
 from .models import Reservation
+
+logger = logging.getLogger(__name__)
 
 
 def send_payment_confirmation_emails(reservation, language_code):
     if not reservation.paid or reservation.confirmation_email_sent:
         return False
 
+    admin_delivered = _deliver_admin_notification(reservation)
+
     if not settings.DEFAULT_FROM_EMAIL:
         return False
 
     guest_sent = _send_guest_confirmation_email(reservation, language_code)
-    admin_sent = _send_admin_notification_email(reservation)
 
-    if guest_sent and admin_sent:
+    if guest_sent and admin_delivered:
         reservation.confirmation_email_sent = True
         reservation.save(update_fields=["confirmation_email_sent"])
         return True
@@ -67,13 +71,49 @@ def _send_guest_confirmation_email(reservation, language_code):
     return message.send() == 1
 
 
-def _send_admin_notification_email(reservation):
+def _render_admin_notification_text(reservation):
+    return render_to_string(
+        "bikes/emails/admin_notification.txt",
+        {"reservation": reservation},
+    )
+
+
+def _log_admin_notification(reservation, reason):
+    logger.warning(
+        "Vilfredo Bikes admin booking notification (%s):\n%s",
+        reason,
+        _render_admin_notification_text(reservation),
+    )
+
+
+def _deliver_admin_notification(reservation):
     if not settings.ADMIN_NOTIFICATION_EMAIL:
+        _log_admin_notification(
+            reservation,
+            "ADMIN_NOTIFICATION_EMAIL is not set; logging instead of email",
+        )
         return True
 
-    subject = f"New paid bike reservation – {reservation.booking_reference}"
+    if not settings.DEFAULT_FROM_EMAIL:
+        _log_admin_notification(
+            reservation,
+            "DEFAULT_FROM_EMAIL is not set; logging instead of email",
+        )
+        return True
+
+    sent = _send_admin_notification_email(reservation)
+    if not sent:
+        _log_admin_notification(
+            reservation,
+            "admin email could not be sent; logging notification content",
+        )
+    return sent
+
+
+def _send_admin_notification_email(reservation):
+    subject = f"New paid bike booking – {reservation.booking_reference}"
     context = {"reservation": reservation}
-    text_body = render_to_string("bikes/emails/admin_notification.txt", context)
+    text_body = _render_admin_notification_text(reservation)
     html_body = render_to_string("bikes/emails/admin_notification.html", context)
 
     message = EmailMultiAlternatives(

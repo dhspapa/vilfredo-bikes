@@ -1,12 +1,14 @@
-New paid bike reservation
+New paid bike booking
 
-Guest: {{ reservation.full_name }}
-Email: {{ reservation.email }}
-Phone: {{ reservation.phone }}
 Booking reference: {{ reservation.booking_reference }}
-Property: {{ reservation.property_name }}
+Guest name: {{ reservation.full_name }}
+Phone: {{ reservation.phone }}
+Email: {{ reservation.email }}
+Property: {{ reservation.get_property_name_display }}
 Bike: {{ reservation.bike.name }}
-Rental: {{ reservation.rental_start }} – {{ reservation.rental_end }}
+Rental dates: {{ reservation.rental_start }} – {{ reservation.rental_end }}
+Total paid: {{ reservation.formatted_total_charged }}
+Stripe payment reference: {% if reservation.stripe_session_id %}{{ reservation.stripe_session_id }}{% else %}Not available{% endif %}
+
 Rental price: {{ reservation.formatted_total_price }}
 Security deposit: {{ reservation.formatted_deposit_amount }}
-Total charged today: {{ reservation.formatted_total_charged }}

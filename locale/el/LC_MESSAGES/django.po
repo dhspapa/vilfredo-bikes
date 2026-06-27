@@ -375,3 +375,6 @@ msgstr "Επισκέπτες Office Home"
 
 msgid "Vilfredo Bikes fleet"
 msgstr "Στόλος Vilfredo Bikes"
+
+msgid "Suggested route"
+msgstr "Προτεινόμενη διαδρομή"
