@@ -18,7 +18,7 @@ class Bike(models.Model):
         ELECTRIC = "electric", _("Electric")
         CITY = "city", _("City")
 
-    CITY_SECURITY_DEPOSIT = Decimal("150.00")
+    CITY_SECURITY_DEPOSIT = Decimal("1.00")
     ELECTRIC_SECURITY_DEPOSIT = Decimal("400.00")
 
     name = models.CharField(max_length=100)
